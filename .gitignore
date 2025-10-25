@@ -1,0 +1,4 @@
+# Ignoruj pliki specyficzne dla macOS
+.DS_Store
+
+
