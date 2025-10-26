@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tytuł Ćwiczenia</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .main-container h2 {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .product-table{
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            text-align: left;
+        }
+        .product-table th, .product-table td {
+            border: 1px solid black; /* Obramowania */
+            padding: 8px;
+        }
+        .product-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<main class="main-container">
+    <h2>Ćwiczenie 2: Lista Produktów</h2>
+    <table class = "product-table">
+        <thead>
+        <tr>
+            <th>Nr.</th>
+            <th>Nazwa produktu</th>
+            <th>Cena produktu</th>
+            <th>Ilość sztuk</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1.</td>
+            <td>Wazon</td>
+            <td>49.99 PLN</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>2.</td>
+            <td>Odkurzacz</td>
+            <td>199.00 PLN</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>3.</td>
+            <td>Hulajnoga</td>
+            <td>450.00 PLN</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4.</td>
+            <td>Zeszyt</td>
+            <td>29.90 PLN</td>
+            <td>45</td>
+        </tr>
+        <tr>
+            <td>5.</td>
+            <td>Kawa</td>
+            <td>75.00 PLN</td>
+            <td>12</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<script src="index.js"></script>
+</body>
+</html>

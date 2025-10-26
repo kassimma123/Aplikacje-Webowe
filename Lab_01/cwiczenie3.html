@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ćwiczenie 3: Kolorowe Kwadraty</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            background-color: #f6d1bd;
+        }
+        .main-container {
+            display:block;
+            width: 100%;
+            height: auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .squares-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 330px;
+            margin: 20px auto;
+        }
+        .square {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            box-sizing: border-box;
+        }
+
+        .sq-1 { background-color: #ff5252; }
+        .sq-2 { background-color: #4CAF50; }
+        .sq-3 { background-color: #f6d1bd; }
+        .sq-4 { background-color: #FFC107; }
+        .sq-5 {
+            background-image: url('ziemiaczek.png');
+            background-size: cover;
+            background-color: hotpink;
+        }
+        .sq-6 { background-color: #2196F3; }
+    </style>
+</head>
+<body>
+<main class="main-container">
+    <h2>Ćwiczenie 3: Kolorowe Kwadraty</h2>
+
+    <div class="squares-container">
+        <div class="square sq-1"></div>
+        <div class="square sq-2"></div>
+
+        <div class="square sq-3"></div>
+        <div class="square sq-4"></div>
+        <div class="square sq-5"></div>
+        <div class="square sq-6"></div>
+    </div>
+
+</main>
+<script src="index.js"></script>
+</body>
+</html>
