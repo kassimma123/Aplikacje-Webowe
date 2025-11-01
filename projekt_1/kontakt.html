@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>kontakt</title>
 </head>
 <body>
+<nav>
+    <a href="http://localhost:63342/Aplikacje-Webowe/projekt_1/home.html?_ijt=be5mlbh8kibp2chfktdin8jcjq&_ij_reload=RELOAD_ON_SAVE">Home</a>
+    <a href="http://localhost:63342/Aplikacje-Webowe/projekt_1/kontakt.html?_ijt=be5mlbh8kibp2chfktdin8jcjq&_ij_reload=RELOAD_ON_SAVE">Kontakt</a>
+    <a href="http://localhost:63342/Aplikacje-Webowe/projekt_1/galeria.html?_ijt=be5mlbh8kibp2chfktdin8jcjq&_ij_reload=RELOAD_ON_SAVE">galeria</a>
+</nav>
+<h2>Formularz kontaktowy</h2>
+<form>
+    <label for="email">E-mail:</label><br>
+    <input type="text" id="email" name="email"><br><br>
 
+    <label>
+        <input list="Temat wiadomości">
+    </label>
+    <datalist id="Temat wiadomości" >
+        <option value="Prośba o wykonanie zlecenia.">
+        <option value="Prośba o indywidualną rozmowę i spersonalizowanie potrzeb.">
+        <option value="Inne.">
+    </datalist><br><br>
+
+    <label>
+        <textarea name="message" style="width: 400px; height:400px">Proszę mi zrobić ładny filmik. Chcę, żeby miał to to i to.</textarea>
+    </label>
+    <br><br>
+    <button type="wyslij" onclick="alert('Wiadomość została wysłana!')">Wyślij</button>
+</form>
+<footer>
+    <h1>to jest mój footer lololo</h1>
+    <p>Katarzyna Piskorz</p>
 </body>
 </html>
