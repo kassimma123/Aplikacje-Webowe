@@ -1,37 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>kontakt</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | Twoje Osobiste CV</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav>
-    <a href="http://localhost:63342/Aplikacje-Webowe/projekt_1/home.html?_ijt=be5mlbh8kibp2chfktdin8jcjq&_ij_reload=RELOAD_ON_SAVE">Home</a>
-    <a href="http://localhost:63342/Aplikacje-Webowe/projekt_1/kontakt.html?_ijt=be5mlbh8kibp2chfktdin8jcjq&_ij_reload=RELOAD_ON_SAVE">Kontakt</a>
-    <a href="http://localhost:63342/Aplikacje-Webowe/projekt_1/galeria.html?_ijt=be5mlbh8kibp2chfktdin8jcjq&_ij_reload=RELOAD_ON_SAVE">galeria</a>
-</nav>
-<h2>Formularz kontaktowy</h2>
-<form>
-    <label for="email">E-mail:</label><br>
-    <input type="text" id="email" name="email"><br><br>
+<div class="animated-layer layer-one"></div>
+<div class="animated-layer layer-two"></div>
+<header>
+    <nav>
+        <a href="index.html" class="logo">Kasia Piskorz</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="kontakt.html" class="active">Contact</a></li>
+            <li><a href="galeria.html">Gallery</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <label>
-        <input list="Temat wiadomości">
-    </label>
-    <datalist id="Temat wiadomości" >
-        <option value="Prośba o wykonanie zlecenia.">
-        <option value="Prośba o indywidualną rozmowę i spersonalizowanie potrzeb.">
-        <option value="Inne.">
-    </datalist><br><br>
+<main>
+    <section>
+        <h2>Contact me!</h2>
 
-    <label>
-        <textarea name="message" style="width: 400px; height:400px">Proszę mi zrobić ładny filmik. Chcę, żeby miał to to i to.</textarea>
-    </label>
-    <br><br>
-    <button type="wyslij" onclick="alert('Wiadomość została wysłana!')">Wyślij</button>
-</form>
+        <form action="#" method="POST" class="contact-form">
+
+            <label for="email">E-mail address:</label>
+            <input type="email" id="email" name="email"
+                   placeholder="np. jan.kowalski@example.com" required> <label for="temat">Your massage:</label>
+            <select id="temat" name="temat" required>
+                <option value="" disabled selected>Select caption...</option>
+                <option value="Question">Question</option>
+                <option value="Cooperation">Cooperation</option>
+                <option value="University Project">University Project</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="wiadomosc">Massage:</label>
+            <textarea id="wiadomosc" name="wiadomosc" rows="8"
+                      placeholder="Enter the message you want to send me..." required></textarea> <input type="submit" value="Send">
+        </form>
+    </section>
+
+
+</main>
+
 <footer>
-    <h1>to jest mój footer lololo</h1>
-    <p>Katarzyna Piskorz</p>
+    <p>&copy; 2025 | My site | Kasia Piskorz</p>
+</footer>
+
 </body>
 </html>

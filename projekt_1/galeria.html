@@ -1,17 +1,124 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>galeria</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria | Twoje Osobiste CV</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav>
-    <a href="http://localhost:63342/Aplikacje-Webowe/projekt_1/home.html?_ijt=be5mlbh8kibp2chfktdin8jcjq&_ij_reload=RELOAD_ON_SAVE">Home</a>
-    <a href="http://localhost:63342/Aplikacje-Webowe/projekt_1/kontakt.html?_ijt=be5mlbh8kibp2chfktdin8jcjq&_ij_reload=RELOAD_ON_SAVE">Kontakt</a>
-    <a href="http://localhost:63342/Aplikacje-Webowe/projekt_1/galeria.html?_ijt=be5mlbh8kibp2chfktdin8jcjq&_ij_reload=RELOAD_ON_SAVE">galeria</a>
-</nav>
+<div class="animated-layer layer-one"></div>
+<div class="animated-layer layer-two"></div>
+<header>
+    <nav>
+        <a href="index.html" class="logo">Kasia Piskorz</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="kontakt.html">Contact</a></li>
+            <li><a href="galeria.html" class="active">Gallery</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <h2>What's here?</h2>
+        <p style="color: var(--secondary-text); margin-bottom: 30px; text-align: center;">
+            That's me, enjoying life a little bit :)
+        </p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+
+                <img src="assets/img/IMG_1248.jpg" alt="1">
+            </div>
+            <div class="gallery-item">
+
+                <img src="assets/img/aparat.jpg" alt="2">
+            </div>
+            <div class="gallery-item">
+
+                <img src="assets/img/babia2.jpg" alt="3">
+            </div>
+            <div class="gallery-item">
+
+                <img src="assets/img/kolorowe.jpg" alt="4">
+            </div>
+        </div>
+    </section>
+
+    <hr style="border: 1px solid var(--accent-color); opacity: 0.3;">
+
+    <section>
+        <h2>My Video Projects</h2>
+
+        <p style="color: var(--secondary-text); margin-bottom: 30px; text-align: center;">
+            Unfortunately, my nostalgic soul needs something more than photos, so I always create videos on YouTube about my favorite trips.
+        </p>
+
+        <div class="video-grid">
+
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/D4Wsb4kO27U"
+                        title="Tytuł Filmu 1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/3oSte6ZyL1s"
+                        title="Tytuł Filmu 2"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
+            </div>
+
+            <!-- FILM 3 -->
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/hbabbyngwCw"
+                        title="Tytuł Filmu 3"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
+            </div>
+
+            <!-- FILM 4 -->
+            <div class="video-item">
+                <iframe src="https://www.youtube.com/embed/92XDrsxGi_k"
+                        title="Tytuł Filmu 4"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
+            </div>
+
+            <p style="color: var(--secondary-text); margin-top: 30px; margin-bottom: 30px; text-align: center; grid-column: 1 / -1;">
+                Except that... <br>
+                I sometimes do it for others too!
+            </p>
+
+        </div>
+
+        <div class="youtube-channel-box">
+            <h3 class="channel-title">MINE AGH</h3>
+            <p class="channel-description">
+                Here is the YouTube channel of the university organization where I work.
+            </p>
+            <a href="https://www.youtube.com/@MINEAGH" target="_blank" class="channel-button">
+                Visit My YouTube 🎬
+            </a>
+        </div>
+    </section>
+</main>
+
 <footer>
-    <h1>to jest mój footer lololo</h1>
-    <p>Katarzyna Piskorz</p>
+    <p>&copy; 2025 | My site | Kasia Piskorz</p>
+</footer>
+
 </body>
 </html>
