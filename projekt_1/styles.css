@@ -65,7 +65,7 @@ nav {
 }
 
 footer {
-    background-color: var(--darker-bg); /* Ciemna Zieleń */
+    background-color: var(--darker-bg);
     text-align: center;
     padding: 20px 0;
     margin-top: 50px;
@@ -204,7 +204,7 @@ h2 {
 .project-card a.github-link {
     color: var(--accent-color);
     font-weight: bold;
-    margin-top: auto; /* Wypycha link na dół */
+    margin-top: auto;
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -216,7 +216,6 @@ h2 {
     color: var(--text-color);
 }
 
-/* Twoje oryginalne style animacji tła */
 .animated-layer {
     position: fixed;
     top: 0;
@@ -294,7 +293,7 @@ h2 {
     max-width: 600px;
     margin: 0 auto;
     padding: var(--spacing);
-    background-color: var(--darker-bg); /* Ciemna Zieleń na tle formularza */
+    background-color: var(--darker-bg);
     border-radius: 10px;
 }
 
@@ -418,12 +417,12 @@ h2 {
 }
 
 .youtube-channel-box:hover {
-    transform: translateY(-8px); /* Lekkie uniesienie przy najechaniu */
+    transform: translateY(-8px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8), 0 0 0 5px var(--accent-color);
 }
 
 .channel-title {
-    color: var(--accent-color); /* Kolor akcentu dla tytułu */
+    color: var(--accent-color);
     font-size: 1.8em;
     margin-bottom: 10px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
@@ -446,7 +445,7 @@ h2 {
     letter-spacing: 1px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    border: 2px solid var(--text-color); /* Biała ramka */
+    border: 2px solid var(--text-color); 
 }
 
 .channel-button:hover {
