@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>generator haseł</title>
+</head>
+<body>
+    <div class="opcja">
+        <label>Minimalna długość hasła: </label>
+        <label for="input-min"></label> <input type="text" id="input-min" value="5">
+    </div>
+
+    <div class="opcja">
+        <label>Maksymalna długość hasła: </label>
+        <label for="input-max"></label> <input type="text" id="input-max" value="10">
+    </div>
+
+    <div class="opcja">
+        <label>Czy wielkie litery?</label>
+        <label for="check-upper"></label> <input type="checkbox" id="check-upper">
+    </div>
+
+    <div class="opcja">
+        <label>Czy znaki specjalne?</label>
+        <label for="check-special"></label> <input type="checkbox" id="check-special">
+    </div>
+
+    <button id="btn-generuj">Wygeneruj hasło</button>
+
+    <script>
+        const inputMin = document.getElementById('input-min');
+        const inputMax = document.getElementById('input-max');
+        const checkUpper = document.getElementById('check-upper');
+        const checkSpecial = document.getElementById('check-special');
+        const btnGeneruj = document.getElementById('btn-generuj');
+
+        const generujHaslo = () => {
+            const min = parseInt(inputMin.value);
+            const max = parseInt(inputMax.value);
+
+            const uzyjWielkich = checkUpper.checked;
+            const uzyjSpecjalnych = checkSpecial.checked;
+
+            if (min > max){
+                alert("Błąd: Minimalna długość jest większa od maksymalnej!");
+                return;
+            }
+
+            const maleLitery = "abcdefghijklmnopqrstuvwxyz";
+            const wielkieLitery = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const znakiSpecjalne = "!@#$%^&*()_+[]{}|;:,.<>?";
+
+            let dozwoloneZnaki = maleLitery;
+
+            if (uzyjSpecjalnych){
+                dozwoloneZnaki += znakiSpecjalne;
+            }
+
+            if (uzyjWielkich){
+                dozwoloneZnaki += wielkieLitery;
+            }
+
+            const dlugoscHasla = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            let haslo = "";
+            for (let i = 0; i < dlugoscHasla; i++){
+                const losowyIndeks = Math.floor(Math.random() * dozwoloneZnaki.length);
+                haslo += dozwoloneZnaki[losowyIndeks];
+            }
+
+            alert(`Wygenerowane hasło: ${haslo}`);
+
+        };
+
+        btnGeneruj.addEventListener('click', generujHaslo);
+    </script>
+
+</body>
+</html>

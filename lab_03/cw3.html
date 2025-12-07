@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pobranie i wyświetlanie danych z API</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        input, select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        td, th {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        thead tr {
+            background-color: #333;
+            color: white;
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(7n+1) { background-color: #ffadad; } /* Czerwony pastelowy */
+        tbody tr:nth-child(7n+2) { background-color: #ffd6a5; } /* Pomarańczowy pastelowy */
+        tbody tr:nth-child(7n+3) { background-color: #fdffb6; } /* Żółty pastelowy */
+        tbody tr:nth-child(7n+4) { background-color: #caffbf; } /* Zielony pastelowy */
+        tbody tr:nth-child(7n+5) { background-color: #9bf6ff; } /* Niebieski pastelowy */
+        tbody tr:nth-child(7n+6) { background-color: #a0c4ff; } /* Indygo pastelowy */
+        tbody tr:nth-child(7n+7) { background-color: #bdb2ff; } /* Fioletowy pastelowy */
+
+        tbody tr:hover {
+            filter: brightness(0.9);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="controls"><label for="filter-input"></label><input type="text" id="filter-input" placeholder="Wpisz fraze...">
+        <label for="sort-select"></label><select id="sort-select">
+            <option value="original">Oryginalna kolejność</option>
+            <option value="asc">Rosnąco (A-Z)</option>
+            <option value="desc">Malejąco (Z-A)</option>
+        </select>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Zdjęcie</th>
+                <th>Tytuł</th>
+                <th>Opis</th>
+            </tr>
+        </thead>
+        <tbody id="products-table">
+        </tbody>
+    </table>
+
+    <script>
+        let oryginalneDane = [];
+        const tabelaBody = document.getElementById('products-table');
+        const inputFiltr = document.getElementById('filter-input');
+        const selectSort = document.getElementById('sort-select');
+
+        fetch('https://dummyjson.com/products')
+            .then(response => response.json())
+            .then(data => {
+                oryginalneDane = data.products.slice(0,30);
+                renderujTabele(oryginalneDane);
+            })
+            .catch(error => console.error('Błąd pobierania:', error));
+
+        const renderujTabele = (daneDoWyswietlenia) => {
+            tabelaBody.innerHTML = "";
+            daneDoWyswietlenia.forEach(product => {
+                const wiersz = document.createElement('tr');
+                const tdImg = document.createElement('td');
+                const img = document.createElement('img');
+                img.src = product.thumbnail;
+                tdImg.appendChild(img);
+
+                const tdTitle = document.createElement('td');
+                tdTitle.innerText = product.title;
+
+                const tdDesc = document.createElement('td');
+                tdDesc.innerText = product.description;
+
+                wiersz.appendChild(tdImg);
+                wiersz.appendChild(tdTitle);
+                wiersz.appendChild(tdDesc);
+
+                tabelaBody.appendChild(wiersz)
+            });
+        };
+
+        const aktualizujWidok = () => {
+            let przetworzoneDane = [...oryginalneDane];
+            const fraza = inputFiltr.value.toLowerCase();
+
+            przetworzoneDane = przetworzoneDane.filter(product => {
+                return product.title.toLowerCase().includes(fraza) || product.description.toLowerCase().includes(fraza);
+
+            });
+
+            const trybSortowania = selectSort.value;
+
+            if (trybSortowania === 'asc'){
+                przetworzoneDane.sort((a, b) => a.title.localeCompare(b.title));
+            }else if (trybSortowania === 'desc'){
+                przetworzoneDane.sort((a, b) => b.title.localeCompare(a.title));
+            }
+            renderujTabele(przetworzoneDane)
+        };
+
+        inputFiltr.addEventListener('input', aktualizujWidok);
+        selectSort.addEventListener('change', aktualizujWidok);
+
+    </script>
+</body>
+</html>

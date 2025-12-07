@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Stoper</title>
+</head>
+<body>
+
+    <div id="stoper-wyswietlacz" style="font-size: 30px; font-weight: bold; margin-bottom: 10px;">0s</div>
+
+    <button id="start">START</button>
+    <button id="stop">STOP</button>
+    <button id="reset">RESET</button>
+
+    <script>
+        let czasWSekundach = 0;
+        let idInterwalu = null;
+
+        const wyswietlacz = document.getElementById('stoper-wyswietlacz');
+        const startBtn = document.getElementById('start');
+        const stopBtn = document.getElementById('stop');
+        const resetBtn = document.getElementById('reset');
+
+        const aktualizujWidok = () => {
+            if (czasWSekundach < 60){
+                wyswietlacz.innerText = `${czasWSekundach}s`
+            } else{
+                const minuty = Math.floor(czasWSekundach / 60);
+                const sekundy = czasWSekundach % 60;
+                wyswietlacz.innerText = `${minuty}min ${sekundy}s`
+            }
+        };
+        startBtn.addEventListener('click', () => {
+            if (!idInterwalu){
+                idInterwalu = setInterval(() => {
+                    czasWSekundach++;
+                    aktualizujWidok();
+                }, 1000);
+            }
+        });
+
+        stopBtn.addEventListener('click', () =>{
+            if(idInterwalu){
+                clearInterval(idInterwalu);
+                idInterwalu = null;
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            if (idInterwalu){
+                clearInterval(idInterwalu);
+                idInterwalu = null;
+            }
+            czasWSekundach = 0;
+            aktualizujWidok();
+
+        });
+    </script>
+
+</body>
+</html>

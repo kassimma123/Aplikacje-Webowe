@@ -513,10 +513,10 @@ h2 {
     background:
             radial-gradient(circle at 0% 10%, rgba(106, 8, 11, 0.87) 0.8%, transparent 1.5%),
             radial-gradient(circle at 80% 90%, rgba(139, 127, 106, 0.76) 0.5%, transparent 1.2%),
-            radial-gradient(circle at 50% 50%, rgba(33, 71, 54, 0.48) 1.0%, transparent 2.0%),
+            radial-gradient(circle at 50% 50%, rgba(33, 71, 54, 0.48) 1.0%, transparent 0.9%),
             radial-gradient(circle at 30% 60%, rgba(117, 150, 133, 0.81) 0.8%, transparent 1.8%),
             radial-gradient(circle at 15% 10%, rgba(228, 210, 185, 0.73) 0.7%, transparent 1.6%),
-            radial-gradient(circle at 40% 70%, rgba(106, 8, 11, 0.89) 1.2%, transparent 2.5%);
+            radial-gradient(circle at 40% 70%, rgba(106, 8, 11, 0.89) 1.2%, transparent 0.9%);
 
     background-size: 1200px 1200px;
     animation: moveLayerTwo 80s linear infinite alternate;
