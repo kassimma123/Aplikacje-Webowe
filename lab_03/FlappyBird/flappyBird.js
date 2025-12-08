@@ -162,7 +162,7 @@ function update(time) {
             let pipe = pipeArray[i];
             pipe.x += velocityX;
 
-            if (pipe.img === topPipeImg) {
+            if (pipe.img === topPipeImg) { //odwrócenie rury, zeby była górna
                 context.save();
                 context.translate(0, pipe.y + pipe.height);
                 context.scale(1, -1);
@@ -211,6 +211,7 @@ function update(time) {
         bird.y += velocityY;
         bird.rotation = 1.5;
 
+        //rury
         drawPipesStatic();
 
         context.drawImage(baseImg, 0, boardHeight - baseHeight, boardWidth, baseHeight);
@@ -231,14 +232,12 @@ function update(time) {
 
     if (gameState === 3) {
         drawPipesStatic();
-        // --- ZMIANA 8: Ziemia na Game Over ---
         context.drawImage(baseImg, 0, boardHeight - baseHeight, boardWidth, baseHeight);
         drawBird();
         drawGameOverUI();
     }
 }
 
-// ... reszta funkcji bez zmian (drawBird, animateBird, drawPipesStatic, drawScore, drawGameOverUI, placePipes, moveBird, detectCollision, loadHighScores, saveScore) ...
 
 function drawBird() {
     context.save();
