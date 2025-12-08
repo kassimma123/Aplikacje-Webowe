@@ -36,6 +36,9 @@ let pipeY = 0;
 let topPipeImg;
 let bottomPipeImg;
 
+let baseImg;
+let baseHeight = 112; // Wysokość ziemi (standard w Flappy Bird to ok. 112px)
+
 // physics
 let velocityX = -2;
 let velocityY = 0;
@@ -49,8 +52,7 @@ let scoreimgs = [];
 let messageImg;
 let gameOverImg;
 
-// --- AUDIO ---
-// Tworzymy obiekty audio (ścieżki ustawimy w onload)
+//AUDIO
 let hitSound = new Audio();
 let dieSound = new Audio();
 let wingSound = new Audio();
@@ -83,6 +85,9 @@ window.onload = function() {
     bottomPipeImg = new Image();
     bottomPipeImg.src = "assets/Flappy Bird/pipe-green.png";
 
+    baseImg = new Image();
+    baseImg.src = "assets/Flappy Bird/base.png";
+
     messageImg = new Image();
     messageImg.src = "assets/UI/message.png";
 
@@ -95,8 +100,7 @@ window.onload = function() {
         scoreimgs.push(img);
     }
 
-    // 2. Ładowanie Dźwięków
-    // Upewnij się, że pliki mają rozszerzenie .wav w folderze (jeśli masz .ogg, zmień końcówkę tutaj)
+    // 2.Dźwięki
     hitSound.src = 'assets/Sound Efects/hit.wav';
     dieSound.src = 'assets/Sound Efects/die.wav';
     wingSound.src = 'assets/Sound Efects/wing.wav';
@@ -104,7 +108,6 @@ window.onload = function() {
     swooshSound.src = 'assets/Sound Efects/swoosh.wav';
     musicSound.src = 'assets/Sound Efects/background.mp4';
     musicSound.loop = true;
-    //§musicSound.volume = 0.5;
 
     loadHighScores();
 
@@ -114,7 +117,6 @@ window.onload = function() {
     document.addEventListener("mousedown", moveBird);
 }
 
-// --- FUNKCJA DO ODTWARZANIA DŹWIĘKÓW (Resetuje czas, żeby można było grać szybko) ---
 function playSound(sound) {
     try {
         sound.currentTime = 0;
@@ -133,6 +135,8 @@ function update(time) {
         bird.y = boardHeight / 2;
         animateBird(time);
         drawBird();
+
+        context.drawImage(baseImg, 0, boardHeight - baseHeight, boardWidth, baseHeight);
 
         let msgX = (boardWidth - 184)/2;
         context.drawImage(messageImg, msgX, 100);
@@ -153,8 +157,7 @@ function update(time) {
         if (velocityY < 2) animateBird(time);
         else birdImgIndex = 1;
 
-        drawBird();
-
+        // Rysujemy rury
         for (let i = 0; i < pipeArray.length; i++) {
             let pipe = pipeArray[i];
             pipe.x += velocityX;
@@ -169,28 +172,28 @@ function update(time) {
                 context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
             }
 
-            // PUNKTACJA
             if (!pipe.passed && bird.x > pipe.x + pipe.width) {
                 score += 0.5;
                 pipe.passed = true;
-
-                // Graj dźwięk TYLKO gdy mamy pełny punkt (czyli po minięciu obu rur z pary)
-                // score rośnie: 0 -> 0.5 -> 1.0 -> 1.5 -> 2.0
                 if (score % 1 === 0) {
-                    playSound(pointSound); // <--- DŹWIĘK PUNKTU
+                    playSound(pointSound);
                 }
             }
 
-            // KOLIZJA Z RURĄ
             if (detectCollision(bird, pipe)) {
-                playSound(hitSound); // <--- DŹWIĘK UDERZENIA
+                playSound(hitSound);
                 gameState = 2;
             }
         }
 
-        // KOLIZJA Z ZIEMIĄ
-        if (bird.y >= boardHeight - bird.height) {
-            playSound(hitSound); // <--- DŹWIĘK UDERZENIA
+        //ziemia
+        context.drawImage(baseImg, 0, boardHeight - baseHeight, boardWidth, baseHeight);
+
+        drawBird();
+
+        //Kolizja z ziemią
+        if (bird.y + bird.height >= boardHeight - baseHeight) {
+            playSound(hitSound);
             gameState = 3;
             saveScore(score);
         }
@@ -202,31 +205,40 @@ function update(time) {
         drawScore();
     }
 
-    // STATE 2: FALLING
+    //FALLING
     if (gameState === 2) {
         velocityY += gravity;
         bird.y += velocityY;
         bird.rotation = 1.5;
 
-        drawBird();
         drawPipesStatic();
 
-        // Uderzenie o ziemię po spadku
-        if (bird.y >= boardHeight - bird.height) {
-            bird.y = boardHeight - bird.height;
-            playSound(dieSound); // <--- DŹWIĘK PRZEGRANEJ
+        context.drawImage(baseImg, 0, boardHeight - baseHeight, boardWidth, baseHeight);
+
+        // Potem ptak
+        drawBird();
+
+        //Spadanie na ziemie
+        let floorY = boardHeight - baseHeight;
+
+        if (bird.y + bird.height >= floorY) {
+            bird.y = floorY - bird.height;
+            playSound(dieSound);
             gameState = 3;
             saveScore(score);
         }
     }
 
-    // STATE 3: GAME OVER
     if (gameState === 3) {
-        drawBird();
         drawPipesStatic();
+        // --- ZMIANA 8: Ziemia na Game Over ---
+        context.drawImage(baseImg, 0, boardHeight - baseHeight, boardWidth, baseHeight);
+        drawBird();
         drawGameOverUI();
     }
 }
+
+// ... reszta funkcji bez zmian (drawBird, animateBird, drawPipesStatic, drawScore, drawGameOverUI, placePipes, moveBird, detectCollision, loadHighScores, saveScore) ...
 
 function drawBird() {
     context.save();
@@ -331,19 +343,17 @@ function moveBird(e) {
     let action = (e.type === 'keydown' && (e.code === "Space" || e.code === "ArrowUp")) || e.type === 'mousedown';
 
     if (action) {
-        // Start game
         if (gameState === 0) {
             gameState = 1;
             velocityY = jumpStrength;
-            playSound(wingSound); // <--- DŹWIĘK STARTOWEGO SKOKU
+            playSound(wingSound);
+            musicSound.play();
             return;
         }
-        // Jump
         if (gameState === 1) {
             velocityY = jumpStrength;
-            playSound(wingSound); // <--- DŹWIĘK SKOKU
+            playSound(wingSound);
         }
-        // Restart
         if (gameState === 3) {
             bird.y = birdY;
             pipeArray = [];
@@ -351,7 +361,7 @@ function moveBird(e) {
             bird.rotation = 0;
             velocityY = 0;
             gameState = 0;
-            playSound(swooshSound); // <--- DŹWIĘK RESTARTU (SWOOSH)
+            playSound(swooshSound);
         }
     }
 }
