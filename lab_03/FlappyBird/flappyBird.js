@@ -37,7 +37,7 @@ let topPipeImg;
 let bottomPipeImg;
 
 let baseImg;
-let baseHeight = 112; // Wysokość ziemi (standard w Flappy Bird to ok. 112px)
+let baseHeight = 112;
 
 // physics
 let velocityX = -2;

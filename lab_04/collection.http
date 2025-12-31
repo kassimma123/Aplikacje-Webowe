@@ -1,0 +1,41 @@
+@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidGVzdEB0ZXN0LnBsIiwiaWF0IjoxNzY2OTQ4NDU1LCJleHAiOjE3NjY5NTIwNTV9.cTMvTGNhCUs0VRsrGoVagNcQTK9v1skgoLqiuqpRZLE"
+
+
+####################################
+# SERWIS 3: REJESTRACJA (Port 3003)
+####################################
+POST http://localhost:3003/api/register
+Content-Type: application/json
+
+{
+    "email": "test@test.pl",
+    "password": "mojehaslo"
+}
+
+###
+
+####################################
+# SERWIS 3: LOGOWANIE (Port 3003)
+####################################
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "email": "test@test.pl",
+    "password": "mojehaslo"
+}
+
+###
+
+####################################
+# SERWIS 1: DODAJ KSIĄŻKĘ (Port 3001)
+####################################
+POST http://localhost:3001/api/books
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "title": "Wiedźmin",
+    "author": "Andrzej Sapkowski",
+    "year": 1993
+}
