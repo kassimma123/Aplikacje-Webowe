@@ -1,4 +1,4 @@
-@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoidGVzdEB0ZXN0LnBsIiwiaWF0IjoxNzY2OTQ4NDU1LCJleHAiOjE3NjY5NTIwNTV9.cTMvTGNhCUs0VRsrGoVagNcQTK9v1skgoLqiuqpRZLE"
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoic3R1ZGVudEBhZ2guZWR1LnBsIiwiaWF0IjoxNzY3NzkxNzk3LCJleHAiOjE3Njc3OTUzOTd9.LCVeRHg_WIBoIKjO6GGEpVTIocKMEe1HkP9Rn8VvehU
 
 
 ####################################
@@ -8,7 +8,7 @@ POST http://localhost:3003/api/register
 Content-Type: application/json
 
 {
-    "email": "test@test.pl",
+    "email": "student@agh.edu.pl",
     "password": "mojehaslo"
 }
 
@@ -21,7 +21,7 @@ POST http://localhost:3003/api/login
 Content-Type: application/json
 
 {
-    "email": "test@test.pl",
+    "email": "student@agh.edu.pl",
     "password": "mojehaslo"
 }
 
@@ -35,7 +35,49 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "title": "Wiedźmin",
-    "author": "Andrzej Sapkowski",
-    "year": 1993
+    "title": "Wojna makowa",
+    "author": "George R. R. Martin",
+    "year": 2023
 }
+
+###
+
+####################################
+# SERWIS 2: ZŁOENIE ZAMÓWIENIA (Port 3002)
+####################################
+POST http://localhost:3002/api/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "userId": 1, 
+    "bookId": 3,
+    "quantity": 2
+}
+
+###
+
+####################################
+# SERWIS 2: ZMIANA ILOŚCI W ZAMÓWIENIU (Port 3002)
+####################################
+PATCH http://localhost:3002/api/orders/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "quantity": 10
+}
+
+
+#######################################
+# PRÓBA DODANIA KSIĄKI BEZ TOKENA (BŁĄD 401)
+#######################################
+POST http://localhost:3001/api/books
+Content-Type: application/json
+
+{
+    "title": "Niezgodna",
+    "author": "Veronica Roth",
+    "year": 2011
+}
+###

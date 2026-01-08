@@ -1,183 +1,65 @@
 {
 	"info": {
-		"_postman_id": "75366020-4315-4d0c-aa7d-2888bec6ee0f",
-		"name": "Aplikacje Internetowe",
-		"description": "Kolekcja pozwalająca na testowanie przykładowego serwisu",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27428639"
+		"name": "Mikroserwisy - Księgarnia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Login",
+			"name": "1. Rejestracja (3003)",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"url": "http://localhost:3003/api/register",
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"password\": \"Test1234!\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/login",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"login"
-					]
+					"raw": "{\"email\": \"test@agh.edu.pl\", \"password\": \"mojehaslo\"}",
+					"options": { "raw": { "language": "json" } }
 				}
-			},
-			"response": []
+			}
 		},
 		{
-			"name": "Get Posts",
+			"name": "2. Logowanie (3003)",
 			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Get Post",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:5000/posts/1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"posts",
-						"1"
-					]
+				"method": "POST",
+				"url": "http://localhost:3003/api/login",
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"test@agh.edu.pl\", \"password\": \"mojehaslo\"}",
+					"options": { "raw": { "language": "json" } }
 				}
-			},
-			"response": []
+			}
 		},
 		{
-			"name": "Edit Post",
+			"name": "3. Dodaj Książkę (3001)",
 			"request": {
 				"method": "POST",
 				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{token}}",
-						"type": "text"
-					}
+					{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
 				],
+				"url": "http://localhost:3001/api/books",
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"New Title\",\r\n    \"content\": \"\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/posts/1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"posts",
-						"1"
-					]
+					"raw": "{\"title\": \"Wojna makowa\", \"author\": \"R.F. Kuang\", \"year\": 2023}",
+					"options": { "raw": { "language": "json" } }
 				}
-			},
-			"response": []
+			}
 		},
 		{
-			"name": "Delete Post",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:5000/posts/9",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"posts",
-						"9"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add Post",
+			"name": "4. Złóż Zamówienie (3002)",
 			"request": {
 				"method": "POST",
 				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{token}}",
-						"type": "text"
-					}
+					{ "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
 				],
+				"url": "http://localhost:3002/api/orders",
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Add New Title 333\",\r\n    \"content\": \"Add New Content 333\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/posts",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"posts"
-					]
+					"raw": "{\"userId\": 1, \"bookId\": 1, \"quantity\": 5}",
+					"options": { "raw": { "language": "json" } }
 				}
-			},
-			"response": []
+			}
 		}
 	],
 	"variable": [
-		{
-			"key": "token",
-			"value": ""
-		}
+		{ "key": "token", "value": "" }
 	]
 }
