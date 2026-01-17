@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoic3R1ZGVudEBhZ2guZWR1LnBsIiwiaWF0IjoxNzY3NzkxNzk3LCJleHAiOjE3Njc3OTUzOTd9.LCVeRHg_WIBoIKjO6GGEpVTIocKMEe1HkP9Rn8VvehU
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoic3R1ZGVudEBhZ2guZWR1LnBsIiwiaWF0IjoxNzY3ODgyMTI2LCJleHAiOjE3Njc4ODU3MjZ9.Rw3owDjHBmUb5UOHlW7u1a1Ss9o4AHnnarXclsYMoYI
 
 
 ####################################
@@ -35,9 +35,9 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "title": "Wojna makowa",
-    "author": "George R. R. Martin",
-    "year": 2023
+    "title": "bleble",
+    "author": "lol",
+    "year": 2020
 }
 
 ###
